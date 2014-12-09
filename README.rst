@@ -17,6 +17,8 @@ Creating Python package make simple.
 Because you should be focused on the feature of your packages, not on the hosting
 testing building infrastructure.
 
+.. code::
+
     $ python3 -m pipcreate frobulator
     will use target dir /Users/bussonniermatthias/eraseme
         # Will open github at the right page and ask you for a private token at first launch.
@@ -47,7 +49,7 @@ Rely heavily on other packages, TraviPy, pygithub and cookiecutter.
 While cookiecutter is nice and allow a lot of flexibility, I think it require too much thinking
 or is too frightening when you don't have time to loose or is a beginnier.
 
-Pipcreate will make most decision for you allowing you to focus on what you like to do. 
+Pipcreate will make most decision for you allowing you to focus on what you like to. 
 
 .. * Documentation: https://pipcreate.readthedocs.org.
 
