@@ -1,9 +1,7 @@
 # PipCreate
 
 [![img](https://badge.fury.io/py/pipcreate.png)](http://badge.fury.io/py/pipcreate)
-
 [![img](https://api.travis-ci.org/Carreau/PipCreate.png?branch=master)](https://travis-ci.org/Carreau/pipcreate)
-
 [![img](https://pypip.in/d/pipcreate/badge.png)](https://pypi.python.org/pypi/pipcreate)
 
 
