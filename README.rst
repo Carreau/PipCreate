@@ -17,6 +17,17 @@ Creating Python package make simple.
 Because you should be focused on the feature of your packages, not on the hosting
 testing building infrastructure.
 
+ - [x] Choose package name if you have no idea.
+ - [x] check that the name is not taken
+ - [x] set up github remote
+ - [x] hook up travis-ci with Github
+ - [ ] hook Read the doc with Github
+ - [ ] hook covertall with Github
+ - [ ] help build and release
+   - [ ] refuse to put on PyPi if travis failing
+
+But as example are better:
+
 .. code::
 
     $ python3 -m pipcreate frobulator
