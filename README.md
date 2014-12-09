@@ -1,8 +1,8 @@
 # PipCreate
 
-[![img](https://badge.fury.io/py/pipcreate.png)](http://badge.fury.io/py/pipcreate)
-[![img](https://api.travis-ci.org/Carreau/PipCreate.png?branch=master)](https://travis-ci.org/Carreau/pipcreate)
-[![img](https://pypip.in/d/pipcreate/badge.png)](https://pypi.python.org/pypi/pipcreate)
+[![img](https://badge.fury.io/py/PipCreate.png)](http://badge.fury.io/py/PipCreate)
+[![img](https://api.travis-ci.org/Carreau/PipCreate.png?branch=master)](https://travis-ci.org/Carreau/PipCreate)
+[![img](https://pypip.in/d/PipCreate/badge.png)](https://pypi.python.org/pypi/PipCreate)
 
 
 Creating Python package make simple. 

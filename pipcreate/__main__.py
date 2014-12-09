@@ -1,4 +1,4 @@
-from pipcreate import main
+from pipcreate.pipcreate import main
 
 import sys
 
