@@ -55,7 +55,7 @@ docs:
 	open docs/_build/html/index.html
 
 release: dist
-	twine upload dist/G
+	twine upload dist/*
 
 dist: clean
 	python3 setup.py sdist
