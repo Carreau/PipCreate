@@ -21,7 +21,7 @@ test_requirements = [
 
 setup(
     name='pipcreate',
-    version='0.1.0',
+    version='0.1.1',
     description='Automatically create a python package upload it on github, set up continuous integration so you can focus on code.',
     long_description=readme + '\n\n' + history,
     author='Matthias Bussonnier',

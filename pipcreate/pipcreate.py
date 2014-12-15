@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import random
 import getpass
 import difflib
@@ -14,9 +15,13 @@ import pkgtools.pypi as pp
 import github
 from travispy import TravisPy
 
-
+from time import sleep
+from cookiecutter.main import get_user_config, generate_context, generate_files
 
 import keyring
+
+import re
+ascii_re = re.compile('^[a-zA-Z]+$')
 
 def main(proposal=None,target_dir=None):
     """
@@ -31,10 +36,10 @@ def main(proposal=None,target_dir=None):
         turl = 'https://github.com/settings/tokens/new'
         print('I will need a new token to access yoru github account, please give me a token that have `write:repo_hook` enable.')
         print("I'll try to open github for you at the right page, otherwise please visit", turl)
-        time.sleep(5)
+        sleep(5)
         webbrowser.open_new_tab(turl)
         token = getpass.getpass('github token:')
-        keyring.get_password('session','github_token', token)
+        keyring.set_password('session','github_token', token)
         print('token stored in your keyring as session:github_token')
 
 
@@ -42,6 +47,9 @@ def main(proposal=None,target_dir=None):
 
     adjectives = ['red','green','blue','purple','fluffy','soft','hard','golden','silver']
     nouns = ['moon', 'frog', 'lake','orchid','lilly','saphire','gem','sun','lilly','ocean','lampshade','fish']
+    if not ascii_re.match(proposal):
+        print('package name are recommend to be ascii letters only:', proposal)
+        sys.exit(-1)
 
 
     if not proposal:
@@ -74,7 +82,7 @@ def main(proposal=None,target_dir=None):
     from github import UnknownObjectException 
     try:
         repo = u.get_repo(proposal)
-        print('It appears like %s repository already exists, usin it as remote' %proposal)
+        print('It appears like %s repository already exists, using it as remote' %proposal)
         existing = True
     except UnknownObjectException:
         repo = u.create_repo(proposal)
@@ -145,7 +153,6 @@ def main(proposal=None,target_dir=None):
     #     - handle case where use is not registered with one of the above services.
     #     - easier way to et github token
 
-    from cookiecutter.main import get_user_config, generate_context, generate_files
     context_file = os.path.expanduser('~/.cookiecutters/cookiecutter-pypackage/cookiecutter.json')
     context = generate_context(context_file)
 
