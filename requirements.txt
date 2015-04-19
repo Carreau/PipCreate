@@ -1,5 +1,6 @@
 wheel==0.23.0
 pygithub
+travispy
 pkgtools
 keyring
 cookiecutter
