@@ -51,7 +51,7 @@ def main(proposal=None,target_dir=None):
     # generate a python package name
 
     adjectives = ['red','green','blue','purple','fluffy','soft','hard','golden','silver']
-    nouns = ['moon', 'frog', 'lake','orchid','lilly','saphire','gem','sun','lily','ocean','lampshade','fish']
+    nouns = ['moon', 'frog', 'lake','orchid','sapphire','gem','sun','lily','ocean','lampshade','fish']
     if not proposal.isidentifier() and len(proposal)>3:
         log.info('package names should be valid python identifiers, and at least 3 letters long', proposal)
         sys.exit(-1)
