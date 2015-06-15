@@ -39,7 +39,7 @@ def main(proposal=None,target_dir=None):
     token = keyring.get_password('session','github_token')
     if token is None:
         turl = 'https://github.com/settings/tokens/new'
-        log.info('I will need a new token to access yoru github account, please give me a token that have `write:repo_hook` enable.')
+        log.info('I will need a new token to access your github account, please give me a token that have `write:repo_hook` enable.')
         log.info("I'll try to open github for you at the right page, otherwise please visit", turl)
         sleep(5)
         webbrowser.open_new_tab(turl)
@@ -51,9 +51,9 @@ def main(proposal=None,target_dir=None):
     # generate a python package name
 
     adjectives = ['red','green','blue','purple','fluffy','soft','hard','golden','silver']
-    nouns = ['moon', 'frog', 'lake','orchid','lilly','saphire','gem','sun','lilly','ocean','lampshade','fish']
+    nouns = ['moon', 'frog', 'lake','orchid','sapphire','gem','sun','lily','ocean','lampshade','fish']
     if not proposal.isidentifier() and len(proposal)>3:
-        log.info('package name are recommend to be valid python identifiers, and at least 3 letters long', proposal)
+        log.info('package names should be valid python identifiers, and at least 3 letters long', proposal)
         sys.exit(-1)
 
 
@@ -63,19 +63,19 @@ def main(proposal=None,target_dir=None):
 
     #  compare name with existing package name, warn if too close
 
-    log.info('Comparing "%s" to other existing package name...' % proposal)
+    log.info('Comparing "%s" to other existing package names...' % proposal)
     pypi = pp.PyPIXmlRpc()
     if plist is None:
         plist = pypi.list_packages()
     closest = difflib.get_close_matches(proposal.lower(), map(str.lower, plist), cutoff=0.8)
     if closest:
         if proposal in closest:
-            log.info(proposal, 'already exists, maybe you woudl prefer to contribute to this package ?')
+            log.info(proposal, 'already exists, maybe you would prefer to contribute to this package?')
         else:
-            log.info(proposal, 'name is close to the following packae name :', closest)
+            log.info(proposal, 'name is close to the following package name:', closest)
     else:
 
-        log.info(proposal, 'seem to have a sufficiently specific name')
+        log.info(proposal, 'seems to have a sufficiently specific name')
 
 
     #  Actually authenticate with github 
@@ -95,12 +95,12 @@ def main(proposal=None,target_dir=None):
 
     ssh_url = repo.ssh_url
     slug = repo.full_name
-    log.info('Workin with repository',slug)
+    log.info('Working with repository',slug)
 
 
     # Clone github repo locally, over SSH an chdir into it
 
-    log.info("Clonning github repository locally")
+    log.info("Cloning github repository locally")
     subprocess.call(['git', 'clone' , ssh_url])
     os.chdir(proposal)
     log.info('I am now in ',os.getcwd())
@@ -133,7 +133,7 @@ def main(proposal=None,target_dir=None):
 
     #  Enable travis hook for this repository
 
-    log.info('Enabling travis hooks for this repository')
+    log.info('Enabling travis hook for this repository')
     resp = t._session.put(t._session.uri+"/hooks/",
                         json={
                             "hook": {
@@ -143,10 +143,10 @@ def main(proposal=None,target_dir=None):
                         },
                       )
     if resp.json()['result'] is True:
-        log.info('Travis hook for this repository are now enabled.')
-        log.info('Continuous interation test shoudl be triggerd everytime you push code to github')
+        log.info('Travis hook for this repository is now enabled.')
+        log.info('Continuous integration test should be triggered every time you push code to github')
     else:
-        log.info("I was not able to set up Travis hooks... somethin went wrong.")
+        log.info("I was not able to set up Travis hooks... something went wrong.")
 
 
     # ##  Do the same for read the doc.
@@ -156,7 +156,7 @@ def main(proposal=None,target_dir=None):
     # ## Todo
     #     - initiate template with something like cookie cutter
     #     - handle case where use is not registered with one of the above services.
-    #     - easier way to et github token
+    #     - easier way to get github token
 
     context_file = os.path.expanduser('~/.cookiecutters/cookiecutter-pypackage/cookiecutter.json')
     context = generate_context(context_file)
